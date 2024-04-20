@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Box } from "@mui/material";
 import HeroBanner from "../components/HeroBanner";
 import Exercises from "../components/Exercises";

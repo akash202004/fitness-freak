@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { Box, Stack, Button, Typography, TextField } from "@mui/material";
 import { exerciseOptions, fetchData } from "../utils/detchData";
@@ -20,21 +21,22 @@ const SearchExercise = ({ setExercises, bodyPart, setBodyPart }) => {
   }, []);
 
   const handleSearch = async () => {
-    const exerciseData = await fetchData(
-      "https://exercisedb.p.rapidapi.com/exercises",
-      exerciseOptions
-    );
+    if (search) {
+      const exerciseData = await fetchData(
+        "https://exercisedb.p.rapidapi.com/exercises",
+        exerciseOptions
+      );
 
-    const searchExercise = exerciseData.filter(
-      (items) =>
-        items.name.toLowerCase().includes(search) ||
-        items.target.toLowerCase().includes(search) ||
-        items.equipment.toLowerCase().includes(search) ||
-        items.bodyPart.toLowerCase().includes(search)
-    );
-
-    setSearch("");
-    setExercises(searchExercise);
+      const searchExercise = exerciseData.filter(
+        (items) =>
+          items.name.toLowerCase().includes(search) ||
+          items.target.toLowerCase().includes(search) ||
+          items.equipment.toLowerCase().includes(search) ||
+          items.bodyPart.toLowerCase().includes(search)
+      );
+      setSearch("");
+      setExercises(searchExercise);
+    }
   };
 
   return (

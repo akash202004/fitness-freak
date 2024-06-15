@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { Box, Stack, Button, Typography, TextField } from "@mui/material";
-import { exerciseOptions, fetchData } from "../utils/detchData";
+import { exerciseOptions, fetchData } from "../utils/fetchData";
 import HorizontalScrollbar from "./HorizontalScrollbar";
 
 const SearchExercise = ({ setExercises, bodyPart, setBodyPart }) => {
@@ -22,25 +22,27 @@ const SearchExercise = ({ setExercises, bodyPart, setBodyPart }) => {
 
   const handleSearch = async () => {
     if (search) {
-      const exerciseData = await fetchData(
+      const exercisesData = await fetchData(
         "https://exercisedb.p.rapidapi.com/exercises",
         exerciseOptions
       );
 
-      const searchExercise = exerciseData.filter(
+      const searchedExercise = exercisesData.filter(
         (items) =>
           items.name.toLowerCase().includes(search) ||
           items.target.toLowerCase().includes(search) ||
           items.equipment.toLowerCase().includes(search) ||
           items.bodyPart.toLowerCase().includes(search)
       );
+      window.scrollTo({ top: 1800, left: 100, behavior: "smooth" });
+
       setSearch("");
-      setExercises(searchExercise);
+      setExercises(searchedExercise);
     }
   };
 
   return (
-    <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
+    <Stack alignItems="center" justifyContent="center" p="20px">
       <Typography
         fontWeight="700"
         textAlign="center"
@@ -66,6 +68,7 @@ const SearchExercise = ({ setExercises, bodyPart, setBodyPart }) => {
           }}
           height="76px"
           value={search}
+          type="text"
           placeholder="Search Exercise"
           onChange={(e) => setSearch(e.target.value.toLocaleLowerCase())}
         />
@@ -89,8 +92,9 @@ const SearchExercise = ({ setExercises, bodyPart, setBodyPart }) => {
       <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
         <HorizontalScrollbar
           data={bodyParts}
-          bodyPart={bodyPart}
+          bodyParts
           setBodyPart={setBodyPart}
+          bodyPart={bodyPart}
         />
       </Box>
     </Stack>

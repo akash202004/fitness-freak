@@ -7,18 +7,27 @@ export const exerciseOptions = {
     }
 };
 
+export const ytOptions = {
+    method: 'GET',
+    headers: {
+        'x-rapidapi-key': '64030af90dmsh39a363111539b15p1633f0jsn0741028068e1',
+        'x-rapidapi-host': 'youtube-search-and-download.p.rapidapi.com'
+    }
+};
+
 export const fetchData = async (url, options) => {
     const response = await fetch(url, options);
     const data = await response.json()
     return data;
 }
 
-const res = fetchData('https://exercisedb.p.rapidapi.com/exercises?limit=20', exerciseOptions);
-console.log(res.PromiseResult);
+const promise = fetchData('https://exercisedb.p.rapidapi.com/exercises?limit=100', exerciseOptions);
 
-// export const fetchExerciseFromAPI = async (limit) => {
-//     const url = `https://exercisedb.p.rapidapi.com/exercises?limit=${limit}`
-//     const data = await fetchData(url, exerciseOptions);
-//     return data;
-// }
+// promise.then(data => {
+//     console.log(data); // This will log the array of 100 items
+//     // You can now work with the data array here
+// }).catch(error => {
+//     console.error('Error fetching data:', error);
+// });
+
 

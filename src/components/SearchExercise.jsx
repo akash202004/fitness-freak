@@ -9,35 +9,46 @@ const SearchExercise = ({ setExercises, bodyPart, setBodyPart }) => {
   const [bodyParts, setBodyParts] = useState([]);
 
   useEffect(() => {
-    const fetchExerciseData = async () => {
-      const bodyPartsData = await fetchData(
-        "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
-        exerciseOptions
-      );
-      setBodyParts(["all", ...bodyPartsData]);
+    const fetchBodyPartsData = async () => {
+      try {
+        // Modify the URL to include the ?limit=100 query parameter
+        const bodyPartsData = await fetchData(
+          "https://exercisedb.p.rapidapi.com/exercises/bodyParts",
+          exerciseOptions
+        );
+        console.log(bodyPartsData);
+        setBodyParts(["all", ...bodyPartsData]);
+      } catch (error) {
+        console.error("Error fetching body parts data:", error);
+      }
     };
 
-    fetchExerciseData();
+    fetchBodyPartsData();
   }, []);
 
   const handleSearch = async () => {
     if (search) {
-      const exercisesData = await fetchData(
-        "https://exercisedb.p.rapidapi.com/exercises",
-        exerciseOptions
-      );
+      try {
+        // Modify the URL to include the ?limit=100 query parameter
+        const exercisesData = await fetchData(
+          "https://exercisedb.p.rapidapi.com/exercises?limit=100",
+          exerciseOptions
+        );
 
-      const searchedExercise = exercisesData.filter(
-        (items) =>
-          items.name.toLowerCase().includes(search) ||
-          items.target.toLowerCase().includes(search) ||
-          items.equipment.toLowerCase().includes(search) ||
-          items.bodyPart.toLowerCase().includes(search)
-      );
-      window.scrollTo({ top: 1800, left: 100, behavior: "smooth" });
+        const searchedExercise = exercisesData.filter(
+          (items) =>
+            items.name.toLowerCase().includes(search) ||
+            items.target.toLowerCase().includes(search) ||
+            items.equipment.toLowerCase().includes(search) ||
+            items.bodyPart.toLowerCase().includes(search)
+        );
+        window.scrollTo({ top: 1800, left: 100, behavior: "smooth" });
 
-      setSearch("");
-      setExercises(searchedExercise);
+        setSearch("");
+        setExercises(searchedExercise);
+      } catch (error) {
+        console.error("Error searching exercises:", error);
+      }
     }
   };
 

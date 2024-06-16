@@ -5,7 +5,7 @@ const ExerxiseVideos = ({ exerciseVideos, name }) => {
   if (!exerciseVideos.length) return "Loading...";
   console.log(exerciseVideos);
   return (
-    <Box sx={{ marginTop: { lg: "150px", xs: "20px" } }} p="10px">
+    <Box sx={{ marginTop: { lg: "150px", xs: "20px" } }} paddingLeft="50px">
       <Typography variant="h3" mb="33px">
         Watch{" "}
         <span style={{ color: "#ff2625", transform: "capitalize" }}>

@@ -21,28 +21,4 @@ export const fetchData = async (url, options) => {
     return data;
 }
 
-const bmiCalculator = {
-    method: 'POST',
-    url: 'https://bmi.p.rapidapi.com/v1/bmi',
-    headers: {
-        'x-rapidapi-key': '64030af90dmsh39a363111539b15p1633f0jsn0741028068e1',
-        'x-rapidapi-host': 'bmi.p.rapidapi.com',
-        'Content-Type': 'application/json'
-    },
-    data: {
-        weight: {
-            value: '85.00',
-            unit: 'kg'
-        },
-        height: {
-            value: '170.00',
-            unit: 'cm'
-        },
-        sex: 'm',
-        age: '24',
-        waist: '34.00',
-        hip: '40.00'
-    }
-};
-
 

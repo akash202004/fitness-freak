@@ -33,9 +33,9 @@ const Navbar = () => {
           >
             Home
           </Link>
-          <a href="/bmi" style={{ textDecoration: "none", color: "#3A1212" }}>
+          <Link to="/bmi" style={{ textDecoration: "none", color: "#3A1212" }}>
             BMI Calculator
-          </a>
+          </Link>
         </Stack>
       </Stack>
     </>

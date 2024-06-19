@@ -43,62 +43,64 @@ const Bmi = () => {
   };
 
   return (
-    <div className="px-20 py-10">
-      <h1 className="text-[50px]">BMI Calculator</h1>
-      <form onSubmit={calculateBmi}>
-        <div>
-          <label className="mx-2 text-[20px]">Weight (in kg )</label>
-          <input
-            className="px-1 py-2 bg-red-200 mt-2"
-            type="number"
-            value={weight}
-            onChange={(e) => setWeight(e.target.value)}
-          />
-        </div>
-        <div>
-          <label className="mx-2 text-[20px]">Height (in cm )</label>
-          <input
-            className="px-1 py-2 bg-red-200 mt-2"
-            type="number"
-            value={height}
-            onChange={(e) => setHeight(e.target.value)}
-          />
-        </div>
-        <div className="mt-2">
-          <label className="mx-2 text-[20px]">Sex</label>
-          <select
-            value={sex}
-            onChange={(e) => setSex(e.target.value)}
-            className="text-[20px]"
+    <div className="flex items-center justify-center">
+      <div className="px-20 py-10">
+        <h1 className="text-[50px]">BMI Calculator</h1>
+        <form onSubmit={calculateBmi}>
+          <div>
+            <label className="mx-2 text-[20px]">Weight (in kg )</label>
+            <input
+              className="px-1 py-2 bg-red-200 mt-2"
+              type="number"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="mx-2 text-[20px]">Height (in cm )</label>
+            <input
+              className="px-1 py-2 bg-red-200 mt-2"
+              type="number"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+            />
+          </div>
+          <div className="mt-2">
+            <label className="mx-2 text-[20px]">Sex</label>
+            <select
+              value={sex}
+              onChange={(e) => setSex(e.target.value)}
+              className="text-[20px]"
+            >
+              <option value="m">male</option>
+              <option value="f">female</option>
+            </select>
+          </div>
+          <div>
+            <label className="mx-2 text-[20px]">Age</label>
+            <input
+              className="px-1 py-2 bg-red-200 mt-2"
+              type="number"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+            />
+          </div>
+          <button
+            className="mt-6 mx-2 px-6 py-2 bg-black text-white"
+            type="submit"
           >
-            <option value="m">male</option>
-            <option value="f">female</option>
-          </select>
-        </div>
-        <div>
-          <label className="mx-2 text-[20px]">Age</label>
-          <input
-            className="px-1 py-2 bg-red-200 mt-2"
-            type="number"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-          />
-        </div>
-        <button
-          className="mt-6 mx-2 px-6 py-2 bg-black text-white"
-          type="submit"
-        >
-          Submit
-        </button>
-      </form>
-      {bmiResult && (
-        <div className="mt-4 mx-2 text-[20px]">
-          <h2 className="underline">BMI Result</h2>
-          <p>BMI : {bmiResult}</p>
-          <p>Status : {message}</p>
-          <p>Risk : {risk}</p>
-        </div>
-      )}
+            Submit
+          </button>
+        </form>
+        {bmiResult && (
+          <div className="mt-4 mx-2 text-[20px]">
+            <h2 className="underline">BMI Result</h2>
+            <p>BMI : {bmiResult}</p>
+            <p>Status : {message}</p>
+            <p>Risk : {risk}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
